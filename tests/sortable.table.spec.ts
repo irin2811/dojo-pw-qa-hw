@@ -31,6 +31,6 @@ test('marking checkboxes test', async ({ page }) => {
   await expect(page.locator('//*[@data-testid="interactions-selected-count"]')).toHaveText('Вибрано: 0');
   await page.locator('//h2[contains(text(), "Sortable table")]/ancestor::section//input[@type="checkbox"]').first().check();
   await expect(page.locator('//*[@data-testid="interactions-selected-count"]')).toHaveText('Вибрано: 1');
-  await page.locator('//h2[contains(text(), "Sortable table")]/ancestor::section//input[@type="checkbox"]').first().uncheck();
-  await expect(page.locator('//*[@data-testid="interactions-selected-count"]')).toHaveText('Вибрано: 0');
+  await page.locator('//h2[contains(text(), "Sortable table")]/ancestor::section//input[@type="checkbox"]').nth(1).check();
+  await expect(page.locator('//*[@data-testid="interactions-selected-count"]')).toHaveText('Вибрано: 2');
 });
