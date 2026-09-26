@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const userPassword = `password123`;
 
 async function userRegistration(page: any, userName: string, userEmail: string, userPassword: string) {
-  await page.goto('/register');
+  await page.goto('/articles/register');
   await page.getByTestId('auth-username').fill(userName);
   await page.getByTestId('auth-email').fill(userEmail);
   await page.getByTestId('auth-password').fill(userPassword);
@@ -21,7 +21,7 @@ test.describe('Registration', { tag: '@auth' }, () => {
     uniqueUserName = `student-${Date.now()}`;
 
     await context.clearCookies();
-    await page.goto('/register');
+    await page.goto('/articles/register');
   });
 
   test('user registers with valid data', async ({ page }) => {
@@ -34,7 +34,7 @@ test.describe('Registration', { tag: '@auth' }, () => {
     await expect(page.getByTestId('nav-profile')).toContainText(uniqueUserName);
 
     await context.clearCookies();
-    await page.goto('/register');
+    await page.goto('/articles/register');
 
     await userRegistration(page, uniqueUserName, uniqueEmail, userPassword);
     await expect(page.getByTestId('error-messages')).toContainText('body email або username вже зайняті');
@@ -61,7 +61,7 @@ test.describe('Login', { tag: '@auth' }, () => {
     await userRegistration(page, userName, userEmail, userPassword);
 
     await context.clearCookies();
-    await page.goto('/login');
+    await page.goto('/articles/login');
   });
 
   test('user logs in with valid data', async ({ page }) => {
